@@ -42,7 +42,7 @@ def predict():
     except Exception as e:  # Catch all exceptions and print error details
         traceback.print_exc()  # Print detailed error information
         LOG.error(f"Error loading model: {e}")  # Log the error message
-        return "Model not loaded"
+       # return "Model not loaded"
 
     json_payload = request.json
     LOG.info("JSON payload: %s json_payload")
