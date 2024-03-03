@@ -5,6 +5,9 @@ import logging
 import pandas as pd
 import joblib
 from sklearn.preprocessing import StandardScaler
+import os
+
+model_path = os.path.abspath("./Housing_price_model/LinearRegression.joblib")
 
 app = Flask(__name__)
 LOG = create_logger(app)
@@ -32,7 +35,7 @@ def predict():
          # clf = joblib.load("./Housing_price_model/LinearRegression.joblib")
          # clf = joblib.load("./Housing_price_model/StochasticGradientDescent.joblib")
         # clf = joblib.load("./Housing_price_model/GradientBoostingRegressor.joblib")
-          clf = joblib.load("boston_housing_prediction.joblib")
+          clf = joblib.load(model_path)
           #  clf = joblib.load("LinearRegression.joblib")
     except:
         LOG.info("JSON payload: %s json_payload")
