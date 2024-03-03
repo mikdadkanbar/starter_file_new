@@ -7,6 +7,8 @@ import joblib
 from sklearn.preprocessing import StandardScaler
 import os
 
+import traceback  # Import traceback module for getting detailed error information
+
 model_path = os.path.abspath("./Housing_price_model/LinearRegression.joblib")
 
 app = Flask(__name__)
@@ -37,8 +39,9 @@ def predict():
         # clf = joblib.load("./Housing_price_model/GradientBoostingRegressor.joblib")
           clf = joblib.load(model_path)
           #  clf = joblib.load("LinearRegression.joblib")
-    except:
-        LOG.info("JSON payload: %s json_payload")
+    except Exception as e:  # Catch all exceptions and print error details
+        traceback.print_exc()  # Print detailed error information
+        LOG.error(f"Error loading model: {e}")  # Log the error message
         return "Model not loaded"
 
     json_payload = request.json
